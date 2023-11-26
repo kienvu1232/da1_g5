@@ -8,6 +8,7 @@ package com.raven.form;
 import com.g5.domainmodel.TacGia;
 import com.g5.service.impl.TacGiaService;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,6 +35,17 @@ public class SanPhamJPanel extends javax.swing.JPanel {
              model.addRow(new Object[]{tg.getId(), tg.getTenTG()});
          }
     }
+    public TacGia inputTacGia(){
+         TacGia tg = new TacGia();        
+         tg.setTenTG(txtTenTacGia.getText());
+         return tg;
+     }
+     public void save(){
+         TacGia tg = inputTacGia();
+         tacGiaService.insert(tg);
+         JOptionPane.showMessageDialog(this, "Thanh Cong");
+        loadTable();
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,7 +61,6 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jLabel2 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -59,7 +70,6 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         tableTacGia = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtIdTacGia = new javax.swing.JTextField();
         txtTimKiemTacGia = new javax.swing.JTextField();
         btnThemTacGia = new javax.swing.JButton();
         btnSuaTacGia = new javax.swing.JButton();
@@ -68,6 +78,7 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         txtTenTacGia = new javax.swing.JTextField();
         btnTimTacGia = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
@@ -80,8 +91,6 @@ public class SanPhamJPanel extends javax.swing.JPanel {
 
         jMenu5.setText("Edit");
         jMenuBar1.add(jMenu5);
-
-        jLabel2.setText("Sản phẩm");
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,12 +138,6 @@ public class SanPhamJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Tên tác giả");
 
-        txtIdTacGia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdTacGiaActionPerformed(evt);
-            }
-        });
-
         txtTimKiemTacGia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTimKiemTacGiaActionPerformed(evt);
@@ -164,6 +167,8 @@ public class SanPhamJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Quản lý tác giả");
 
+        jLabel6.setText("?");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -175,20 +180,20 @@ public class SanPhamJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtIdTacGia, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtTimKiemTacGia, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
                                 .addComponent(btnTimTacGia))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(48, 48, 48)
+                                        .addComponent(jLabel1)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(btnThemTacGia)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -205,11 +210,11 @@ public class SanPhamJPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGap(47, 47, 47)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtIdTacGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                    .addComponent(jLabel6))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtTenTacGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -235,10 +240,6 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(369, 369, 369))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1)
@@ -247,17 +248,11 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtIdTacGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdTacGiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdTacGiaActionPerformed
 
     private void txtTimKiemTacGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemTacGiaActionPerformed
         // TODO add your handling code here:
@@ -265,6 +260,7 @@ public class SanPhamJPanel extends javax.swing.JPanel {
 
     private void btnThemTacGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemTacGiaActionPerformed
         // TODO add your handling code here:
+        save();
     }//GEN-LAST:event_btnThemTacGiaActionPerformed
 
     private void txtTenTacGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenTacGiaActionPerformed
@@ -278,10 +274,10 @@ public class SanPhamJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnTimTacGia;
     private javax.swing.JButton btnXoaTacGia;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -295,7 +291,6 @@ public class SanPhamJPanel extends javax.swing.JPanel {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable table;
     private javax.swing.JTable tableTacGia;
-    private javax.swing.JTextField txtIdTacGia;
     private javax.swing.JTextField txtTenTacGia;
     private javax.swing.JTextField txtTimKiemTacGia;
     // End of variables declaration//GEN-END:variables

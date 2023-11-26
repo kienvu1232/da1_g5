@@ -43,7 +43,6 @@ public class TacGiaService implements ITacGiaService{
     public void insert(TacGia tacGia) {
          if(tacGia != null){
         TacGia tg = new TacGia();
-        tg.setId(tacGia.getId());
         tg.setTenTG(tacGia.getTenTG());
         this.tacGiaRepository.insert(tg);
         }

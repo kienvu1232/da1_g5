@@ -37,14 +37,15 @@ public class TestCRUDTacGia extends javax.swing.JPanel {
          }
     }
      public TacGia inputTacGia(){
-         TacGia tg = new TacGia();
-         tg.setId(Integer.parseInt(txtId.getText()));
+         TacGia tg = new TacGia();        
          tg.setTenTG(txtTenTG.getText());
          return tg;
      }
      public void save(){
          TacGia tg = inputTacGia();
          tacGiaService.insert(tg);
+         JOptionPane.showMessageDialog(this, "Thanh Cong");
+        loadTable();
      }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -140,8 +141,7 @@ public class TestCRUDTacGia extends javax.swing.JPanel {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         save();
-        JOptionPane.showMessageDialog(this, "Thanh Cong");
-        loadTable();
+        
     }//GEN-LAST:event_btnThemActionPerformed
     
 

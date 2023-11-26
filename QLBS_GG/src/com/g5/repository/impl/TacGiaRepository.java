@@ -22,8 +22,8 @@ public class TacGiaRepository implements ITacGiaRepository{
 
     @Override
     public void insert(TacGia tacGia) {
-        String sql = "Insert into TacGia values (?,?)";
-        DBConnection.ExcuteDungna(sql, tacGia.getId(), tacGia.getTenTG());
+        String sql = "Insert into TacGia(Ten) values (?)";
+        DBConnection.ExcuteDungna(sql, tacGia.getTenTG());
     }
 
     @Override
@@ -43,9 +43,9 @@ public class TacGiaRepository implements ITacGiaRepository{
         try {
             ResultSet rs = DBConnection.getDataFromQuery(select_sql);
             while (rs.next()) {
-                int idMon = rs.getInt("Id");
-                String tenTG = rs.getString("tenTG");
-                TacGia tacGia = new TacGia(idMon, tenTG);
+                String id = rs.getString("Id");
+                String tenTG = rs.getString("ten");
+                TacGia tacGia = new TacGia(id, tenTG);
                 dsTacGia.add(tacGia);
             }
         } catch (SQLException ex) {

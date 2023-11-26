@@ -20,7 +20,7 @@ public class DBConnection {
     private static String acc = "sa";
     private static String pass = "123456";
 
-    private static String dbName = "G5_DUAN1_JAVA";
+    private static String dbName = "QLBS_GG";
     private static String connectionSql
             = "jdbc:sqlserver://" + hostName + ";databaseName=" + dbName + ";encrypt=true;trustServerCertificate=true";
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";

@@ -9,23 +9,23 @@ package com.g5.domainmodel;
  * @author admin
  */
 public class TacGia {
-    private int id;
+    private String id;
     private String tenTG;
 
     public TacGia() {
     }
-    
-    
-    public TacGia(int id, String tenTG) {
+
+    public TacGia(String id, String tenTG) {
         this.id = id;
         this.tenTG = tenTG;
     }
-
-    public int getId() {
+    
+    
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -36,6 +36,7 @@ public class TacGia {
     public void setTenTG(String tenTG) {
         this.tenTG = tenTG;
     }
+    
     
     
 }
