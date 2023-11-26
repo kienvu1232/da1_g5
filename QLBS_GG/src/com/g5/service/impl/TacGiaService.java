@@ -55,7 +55,7 @@ public class TacGiaService implements ITacGiaService{
 
     @Override
     public void delete(String ten) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       this.tacGiaRepository.delete(ten);
     }
     
 }

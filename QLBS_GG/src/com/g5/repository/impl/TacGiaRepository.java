@@ -27,8 +27,9 @@ public class TacGiaRepository implements ITacGiaRepository{
     }
 
     @Override
-    public void delete(String tenTG) {
-       
+    public void delete(String id) {
+       String delete_sql = "delete from TacGia where id = ?";
+       DBConnection.ExcuteDungna(delete_sql,id);
     }
 
     @Override

@@ -21,31 +21,36 @@ public class SanPhamJPanel extends javax.swing.JPanel {
      * Creates new form Form_1
      */
     TacGiaService tacGiaService = new TacGiaService();
-    List<TacGia>listTacGia;
+    List<TacGia> listTacGia;
     DefaultTableModel model;
+
     public SanPhamJPanel() {
         initComponents();
-         loadTable();
+        loadTable();
     }
-    public void loadTable(){
+
+    public void loadTable() {
         listTacGia = tacGiaService.findAll();
         model = (DefaultTableModel) tableTacGia.getModel();
-       model.setRowCount(0);
-         for (TacGia tg : listTacGia) {
-             model.addRow(new Object[]{tg.getId(), tg.getTenTG()});
-         }
+        model.setRowCount(0);
+        for (TacGia tg : listTacGia) {
+            model.addRow(new Object[]{tg.getId(), tg.getTenTG()});
+        }
     }
-    public TacGia inputTacGia(){
-         TacGia tg = new TacGia();        
-         tg.setTenTG(txtTenTacGia.getText());
-         return tg;
-     }
-     public void save(){
-         TacGia tg = inputTacGia();
-         tacGiaService.insert(tg);
-         JOptionPane.showMessageDialog(this, "Thanh Cong");
+
+    public TacGia inputTacGia() {
+        TacGia tg = new TacGia();
+        tg.setTenTG(txtTenTacGia.getText());
+        return tg;
+    }
+
+    public void save() {
+        TacGia tg = inputTacGia();
+        tacGiaService.insert(tg);
+        JOptionPane.showMessageDialog(this, "Thanh Cong");
         loadTable();
-     }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,7 +83,23 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         txtTenTacGia = new javax.swing.JTextField();
         btnTimTacGia = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblid = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableNSX = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtTimKiemNSX = new javax.swing.JTextField();
+        btnThemNSX = new javax.swing.JButton();
+        btnSuaNSX = new javax.swing.JButton();
+        btnXoaNSX = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtTenNSX = new javax.swing.JTextField();
+        btnTimNSX = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        lblidNSX = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
 
         jMenu1.setText("jMenu1");
 
@@ -103,6 +124,11 @@ public class SanPhamJPanel extends javax.swing.JPanel {
                 "Id", "Tên sản phẩm", "Tác giả", "NSX", "Thể loại", "Số lượng", "Giá nhập", "Giá bán", "Mô tả"
             }
         ));
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -132,6 +158,11 @@ public class SanPhamJPanel extends javax.swing.JPanel {
                 "Id", "Tên tác giả"
             }
         ));
+        tableTacGia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableTacGiaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tableTacGia);
 
         jLabel1.setText("Id");
@@ -154,6 +185,11 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         btnSuaTacGia.setText("Sửa");
 
         btnXoaTacGia.setText("Xóa");
+        btnXoaTacGia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaTacGiaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Tìm kiếm");
 
@@ -165,9 +201,10 @@ public class SanPhamJPanel extends javax.swing.JPanel {
 
         btnTimTacGia.setText("Tìm");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Quản lý tác giả");
 
-        jLabel6.setText("?");
+        lblid.setText("?");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -192,15 +229,15 @@ public class SanPhamJPanel extends javax.swing.JPanel {
                                         .addGap(48, 48, 48)
                                         .addComponent(jLabel1)))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(btnThemTacGia)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnSuaTacGia)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnXoaTacGia))
-                                    .addComponent(txtTenTacGia, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtTenTacGia, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                                    .addComponent(lblid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -213,7 +250,7 @@ public class SanPhamJPanel extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel6))
+                    .addComponent(lblid))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -223,7 +260,7 @@ public class SanPhamJPanel extends javax.swing.JPanel {
                     .addComponent(btnThemTacGia)
                     .addComponent(btnSuaTacGia)
                     .addComponent(btnXoaTacGia))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtTimKiemTacGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,6 +272,162 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Tác giả", jPanel2);
+
+        tableNSX.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Id", "Tên NSX"
+            }
+        ));
+        tableNSX.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableNSXMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tableNSX);
+
+        jLabel2.setText("Id");
+
+        jLabel7.setText("Tên tác giả");
+
+        txtTimKiemNSX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTimKiemNSXActionPerformed(evt);
+            }
+        });
+
+        btnThemNSX.setText("Thêm");
+        btnThemNSX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemNSXActionPerformed(evt);
+            }
+        });
+
+        btnSuaNSX.setText("Sửa");
+
+        btnXoaNSX.setText("Xóa");
+        btnXoaNSX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaNSXActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Tìm kiếm");
+
+        txtTenNSX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTenNSXActionPerformed(evt);
+            }
+        });
+
+        btnTimNSX.setText("Tìm");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setText("Quản lý NSX");
+
+        lblidNSX.setText("?");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtTimKiemNSX, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(btnTimNSX))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGap(48, 48, 48)
+                                        .addComponent(jLabel2)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(btnThemNSX)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnSuaNSX)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnXoaNSX))
+                                    .addComponent(txtTenNSX, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                                    .addComponent(lblidNSX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addGap(50, 50, 50)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lblidNSX))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtTenNSX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnThemNSX)
+                    .addComponent(btnSuaNSX)
+                    .addComponent(btnXoaNSX))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtTimKiemNSX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTimNSX))
+                .addGap(205, 205, 205))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("NSX", jPanel3);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 829, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 439, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Thể loại", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -267,17 +460,71 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenTacGiaActionPerformed
 
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_tableMouseClicked
+
+    private void tableTacGiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTacGiaMouseClicked
+        // TODO add your handling code here:
+         int selectedRow = tableTacGia.getSelectedRow();
+        String ma = (String) tableTacGia.getValueAt(selectedRow, 0);
+        String ten = (String) tableTacGia.getValueAt(selectedRow, 1);
+        lblid.setText(ma);
+        txtTenTacGia.setText(ten);
+    }//GEN-LAST:event_tableTacGiaMouseClicked
+
+    private void btnXoaTacGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTacGiaActionPerformed
+        // TODO add your handling code here:int selectedRow = tblDauDiem.getSelectedRow();
+        int selectedRow = tableTacGia.getSelectedRow();
+        if(selectedRow != -1){
+            String id = (String) tableTacGia.getValueAt(selectedRow, 0);
+            int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon xoa khong?");
+               if(confirm == JOptionPane.YES_OPTION){
+                   this.tacGiaService.delete(id);
+                   loadTable();
+               }
+        }
+    }//GEN-LAST:event_btnXoaTacGiaActionPerformed
+
+    private void tableNSXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableNSXMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableNSXMouseClicked
+
+    private void txtTimKiemNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemNSXActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimKiemNSXActionPerformed
+
+    private void btnThemNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemNSXActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThemNSXActionPerformed
+
+    private void btnXoaNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaNSXActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnXoaNSXActionPerformed
+
+    private void txtTenNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenNSXActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenNSXActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSuaNSX;
     private javax.swing.JButton btnSuaTacGia;
+    private javax.swing.JButton btnThemNSX;
     private javax.swing.JButton btnThemTacGia;
+    private javax.swing.JButton btnTimNSX;
     private javax.swing.JButton btnTimTacGia;
+    private javax.swing.JButton btnXoaNSX;
     private javax.swing.JButton btnXoaTacGia;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -286,12 +533,21 @@ public class SanPhamJPanel extends javax.swing.JPanel {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblid;
+    private javax.swing.JLabel lblidNSX;
     private javax.swing.JTable table;
+    private javax.swing.JTable tableNSX;
     private javax.swing.JTable tableTacGia;
+    private javax.swing.JTextField txtTenNSX;
     private javax.swing.JTextField txtTenTacGia;
+    private javax.swing.JTextField txtTimKiemNSX;
     private javax.swing.JTextField txtTimKiemTacGia;
     // End of variables declaration//GEN-END:variables
 }
