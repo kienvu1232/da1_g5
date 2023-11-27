@@ -183,6 +183,11 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         });
 
         btnSuaTacGia.setText("Sửa");
+        btnSuaTacGia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaTacGiaActionPerformed(evt);
+            }
+        });
 
         btnXoaTacGia.setText("Xóa");
         btnXoaTacGia.addActionListener(new java.awt.event.ActionListener() {
@@ -506,6 +511,23 @@ public class SanPhamJPanel extends javax.swing.JPanel {
     private void txtTenNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenNSXActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenNSXActionPerformed
+
+    private void btnSuaTacGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaTacGiaActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tableTacGia.getSelectedRow();
+        if(selectedRow != -1){
+            TacGia tacGia = new TacGia();
+            tacGia.setTenTG(txtTenTacGia.getText());
+            lblid.getText();
+            if(tacGia != null){
+               int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon sua khong?");
+               if(confirm == JOptionPane.YES_OPTION){
+                   this.tacGiaService.update(tacGia);
+                   loadTable();
+               }
+            }
+        }
+    }//GEN-LAST:event_btnSuaTacGiaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
