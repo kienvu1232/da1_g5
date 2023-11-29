@@ -13,9 +13,6 @@ import java.util.List;
  */
 public interface ITacGiaService {
     List<TacGia> findAll();
-    List<TacGia> findAllView();
-    String getTenTacGia(String id);
-    String getIdTacGia(String tenTG);
     void insert(TacGia tacGia);
     void update(TacGia tacGia);
     void delete(String ten);

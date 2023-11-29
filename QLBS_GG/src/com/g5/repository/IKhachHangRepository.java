@@ -4,10 +4,13 @@
  */
 package com.g5.repository;
 
+import com.g5.domainmodel.KhachHang;
+import java.util.List;
+
 /**
  *
  * @author admin
  */
 public interface IKhachHangRepository {
-    
+    List<KhachHang>getAllKH();
 }

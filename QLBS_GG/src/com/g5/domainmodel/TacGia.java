@@ -36,6 +36,11 @@ public class TacGia {
     public void setTenTG(String tenTG) {
         this.tenTG = tenTG;
     }
+
+    @Override
+    public String toString() {
+        return tenTG;
+    }
     
     
     

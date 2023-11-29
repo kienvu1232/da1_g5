@@ -4,10 +4,16 @@
  */
 package com.g5.repository;
 
+import com.g5.domainmodel.TheLoai;
+import java.util.List;
+
 /**
  *
  * @author admin
  */
 public interface ITheLoaiRepository {
-    
+    void insert (TheLoai theLoai);
+    void delete (String tenTL);
+    void update (TheLoai theLoai);
+    List<TheLoai> findAll();
 }

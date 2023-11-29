@@ -16,6 +16,5 @@ public interface ITacGiaRepository {
     void delete (String tenTG);
     void update (TacGia tacGia);
     List<TacGia> findAll();
-    List<TacGia> getAllTacGia(String id);
-    String getIdTacGia(String ten);
+
 }

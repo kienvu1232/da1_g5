@@ -36,5 +36,8 @@ public class NSX {
         this.tenNSX = tenNSX;
     }
     
-    
+    @Override
+    public String toString() {
+        return tenNSX;
+    }
 }

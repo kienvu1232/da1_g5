@@ -4,10 +4,16 @@
  */
 package com.g5.service;
 
+import com.g5.domainmodel.NhanVien;
+import java.util.List;
+
 /**
  *
  * @author admin
  */
 public interface INhanVienService {
-    
+    void insert (NhanVien nhanVien);
+    void delete (String tenNV);
+    void update(NhanVien nhanVien);
+    List<NhanVien>findAll();
 }

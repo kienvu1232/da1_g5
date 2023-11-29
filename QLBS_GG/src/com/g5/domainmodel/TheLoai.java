@@ -36,5 +36,8 @@ public class TheLoai {
         this.tenTL = tenTL;
     }
     
-    
+    @Override
+    public String toString() {
+        return tenTL;
+    }
 }

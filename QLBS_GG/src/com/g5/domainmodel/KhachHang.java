@@ -12,23 +12,27 @@ import java.util.Date;
  */
 public class KhachHang {
     private String id;
+    private String maKH;
     private String tenKH;
     private String sdt;
     private String diaChi;
     private int gioiTinh;
     private Date ngayTao;
+    private boolean vaiTro;
     private int trangThai;
 
     public KhachHang() {
     }
 
-    public KhachHang(String id, String tenKH, String sdt, String diaChi, int gioiTinh, Date ngayTao, int trangThai) {
+    public KhachHang(String id, String maKH, String tenKH, String sdt, String diaChi, int gioiTinh, Date ngayTao, boolean vaiTro, int trangThai) {
         this.id = id;
+        this.maKH = maKH;
         this.tenKH = tenKH;
         this.sdt = sdt;
         this.diaChi = diaChi;
         this.gioiTinh = gioiTinh;
         this.ngayTao = ngayTao;
+        this.vaiTro = vaiTro;
         this.trangThai = trangThai;
     }
 
@@ -38,6 +42,14 @@ public class KhachHang {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getMaKH() {
+        return maKH;
+    }
+
+    public void setMaKH(String maKH) {
+        this.maKH = maKH;
     }
 
     public String getTenKH() {
@@ -80,6 +92,14 @@ public class KhachHang {
         this.ngayTao = ngayTao;
     }
 
+    public boolean isVaiTro() {
+        return vaiTro;
+    }
+
+    public void setVaiTro(boolean vaiTro) {
+        this.vaiTro = vaiTro;
+    }
+
     public int getTrangThai() {
         return trangThai;
     }
@@ -87,6 +107,8 @@ public class KhachHang {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
-    
+
+   
+   
     
 }

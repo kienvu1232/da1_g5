@@ -4,10 +4,16 @@
  */
 package com.g5.service;
 
+import com.g5.domainmodel.NSX;
+import java.util.List;
+
 /**
  *
  * @author admin
  */
 public interface INSXService {
-    
+    void insert (NSX nsx);
+    void delete (String id);
+    void update (NSX nsx);
+    List<NSX> findAll();
 }

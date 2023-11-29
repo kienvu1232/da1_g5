@@ -34,7 +34,8 @@ public class TacGiaRepository implements ITacGiaRepository{
 
     @Override
     public void update(TacGia tacGia) {
-        
+         String sql = "update TacGia set Ten = ? where id = ?";
+         DBConnection.ExcuteDungna(sql, tacGia.getTenTG(), tacGia.getId());
     }
 
     @Override
@@ -55,18 +56,5 @@ public class TacGiaRepository implements ITacGiaRepository{
         return dsTacGia; 
     }
 
-    @Override
-    public List<TacGia> getAllTacGia(String id) {
-        
-        return null;
-        
-    }
-
-    @Override
-    public String getIdTacGia(String ten) {
-        
-        return null;
-        
-    }
     
 }
