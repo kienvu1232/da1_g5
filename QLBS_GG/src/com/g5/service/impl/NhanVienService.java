@@ -20,8 +20,8 @@ public class NhanVienService implements INhanVienService{
         this.nhanVienRepository = new NhanVienRepository();
     }
     @Override
-    public void insert(NhanVien nhanVien) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String insert(NhanVien nhanVien) {
+        return this.nhanVienRepository.insert(nhanVien);
     }
 
     @Override

@@ -288,7 +288,6 @@ public class SanPhamJPanel extends javax.swing.JPanel {
 
         jLabel12.setText("Tác giả");
 
-        cbxTG.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxTG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxTGActionPerformed(evt);
@@ -297,11 +296,9 @@ public class SanPhamJPanel extends javax.swing.JPanel {
 
         jLabel13.setText("NSX");
 
-        cbxNSX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxNSX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         jLabel14.setText("Thể loại");
-
-        cbxTL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel15.setText("Số lượng");
 

@@ -66,5 +66,9 @@ public class CuaHang {
         this.QuocGia = QuocGia;
     }
     
+    @Override
+    public String toString() {
+        return tenCH;
+    }
     
 }

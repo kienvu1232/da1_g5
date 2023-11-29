@@ -12,7 +12,7 @@ import java.util.List;
  * @author admin
  */
 public interface INhanVienService {
-    void insert (NhanVien nhanVien);
+    String insert (NhanVien nhanVien);
     void delete (String tenNV);
     void update(NhanVien nhanVien);
     List<NhanVien>findAll();

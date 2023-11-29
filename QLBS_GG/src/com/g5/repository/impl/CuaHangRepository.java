@@ -38,7 +38,7 @@ public class CuaHangRepository implements ICuaHangReposioty{
 
     @Override
     public List<CuaHang> findAll() {
-          String select_sql = "select * from TheLoai";
+          String select_sql = "select * from CuaHang";
         List<CuaHang> dsCuaHang = new ArrayList<>();
         try {
             ResultSet rs = DBConnection.getDataFromQuery(select_sql);
@@ -48,7 +48,7 @@ public class CuaHangRepository implements ICuaHangReposioty{
                 String diaChi = rs.getString("DiaChi");
                 String thanhPho = rs.getString("ThanhPho");
                 String quocGia = rs.getString("QuocGia");
-                CuaHang cuaHang = new CuaHang(id, diaChi, diaChi, thanhPho, quocGia);
+                CuaHang cuaHang = new CuaHang(id, tenCuaHang, diaChi, thanhPho, quocGia);
                 dsCuaHang.add(cuaHang);
             }
         } catch (SQLException ex) {

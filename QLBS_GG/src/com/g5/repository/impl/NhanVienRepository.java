@@ -7,6 +7,9 @@ package com.g5.repository.impl;
 import com.g5.domainmodel.NhanVien;
 import com.g5.repository.INhanVienRepository;
 import com.g5.util.DBConnection;
+import com.g5.util.JdbcHelper;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,8 +24,26 @@ import java.util.logging.Logger;
 public class NhanVienRepository implements INhanVienRepository {
 
     @Override
-    public void insert(NhanVien nhanVien) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String insert(NhanVien nhanVien) {
+        String sql = "INSERT INTO NhanVien(Ten, IdCH, GioiTinh, NgaySinh, Sdt, DiaChi, Email, MatKhau) values(?,?,?,?,?,?,?,?)";
+        try ( Connection con = JdbcHelper.openDbConnection();  PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, nhanVien.getTenNV());
+            ps.setObject(2, nhanVien.getIdCH());
+            ps.setObject(3, nhanVien.getGioiTinh());
+            ps.setObject(4, nhanVien.getNgaySinh());
+            ps.setObject(5, nhanVien.getSdt());
+            ps.setObject(6, nhanVien.getDiaChi());
+            ps.setObject(7, nhanVien.getEmail());
+            ps.setObject(8, nhanVien.getMatKhau());
+
+            if (ps.executeUpdate() > 0) {
+                return "Thêm nhan vien thành công";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Thêm nhan vien thất bại";
+    
     }
 
     @Override
