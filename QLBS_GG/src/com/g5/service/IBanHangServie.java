@@ -4,7 +4,9 @@
  */
 package com.g5.service;
 
+import com.g5.domainmodel.HoaDonChiTiet;
 import com.g5.domainmodel.SanPham;
+import com.g5.viewModel.GioHangViewModel;
 import com.g5.viewModel.HoaDonViewModel;
 import com.g5.viewModel.SanPhamViewModel;
 import java.util.List;
@@ -19,4 +21,8 @@ public interface IBanHangServie {
     void insertHD(HoaDonViewModel hd);
     String findByIdKH(String idKH);
     String findByIdNV(String idNV);
+    String addHDCT(HoaDonChiTiet hdct);
+    List<GioHangViewModel> getGioHang(String id);
+    
+    List<SanPhamViewModel>getSanPhamBH(String id);
 }

@@ -52,30 +52,7 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         loadTL((ArrayList<TheLoai>) tlService.findAll());
     }
 
-//    public void loadCbxTg(){
-//        DefaultComboBoxModel<TacGia> modelCbx = new DefaultComboBoxModel<>();
-//        listTacGia = tacGiaService.findAll();
-//        for (TacGia tg : listTacGia){
-//            modelCbx.addElement(tg);
-//        }
-//        cbxTG.setModel(modelCbx);
-//    }
-//    public void loadCbxNSX(){
-//        DefaultComboBoxModel<NSX> modelCbx = new DefaultComboBoxModel<>();
-//        listNSX = nsxService.findAll();
-//        for (NSX nsx : listNSX) {
-//            modelCbx.addElement(nsx);
-//        }
-//        cbxNSX.setModel(modelCbx);
-//    }
-//     public void loadCbxTL(){
-//        DefaultComboBoxModel<TheLoai> modelCbx = new DefaultComboBoxModel<>();
-//        listTL = tlService.findAll();
-//        for (TheLoai t : listTL) {
-//            modelCbx.addElement(t);
-//        }
-//        cbxTL.setModel(modelCbx);
-//    }
+
     public void loadNSX(ArrayList<NSX> list) {
         cbxmodel = (DefaultComboBoxModel) cbxNSX.getModel();
         for (NSX nsx : list) {

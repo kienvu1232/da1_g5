@@ -95,7 +95,8 @@
         <Component class="javax.swing.JTable" name="tableHD">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="4">
+              <Table columnCount="6" rowCount="5">
+                <Column editable="true" title="Id" type="java.lang.Object"/>
                 <Column editable="true" title="M&#xe3; H&#x110;" type="java.lang.Object"/>
                 <Column editable="true" title="Ng&#xe0;y t&#x1ea1;o" type="java.lang.Object"/>
                 <Column editable="true" title="Nh&#xe2;n vi&#xea;n t&#x1ea1;o" type="java.lang.Object"/>
@@ -130,12 +131,20 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
               </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableHDMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -202,6 +211,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableSPBHMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -289,18 +301,22 @@
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="cbxGiamGia" min="-2" max="-2" attributes="0"/>
-                                      <Component id="cbxHTTT" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblTienThua" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblThanhToan" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblTongTien" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblNgayTao" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblMaHD" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtTienKhachDua" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="cbxGiamGia" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cbxHTTT" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblTienThua" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblThanhToan" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblTongTien" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtTienKhachDua" alignment="0" pref="146" max="32767" attributes="0"/>
+                                              <Component id="lblNgayTao" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="lblIdHD" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
@@ -319,7 +335,7 @@
                           <Component id="btnLamMoi" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -342,7 +358,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblMaHD" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblIdHD" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -459,7 +475,7 @@
             <Property name="text" type="java.lang.String" value="?"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblMaHD">
+        <Component class="javax.swing.JLabel" name="lblIdHD">
           <Properties>
             <Property name="text" type="java.lang.String" value="?"/>
           </Properties>
@@ -581,6 +597,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhapActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

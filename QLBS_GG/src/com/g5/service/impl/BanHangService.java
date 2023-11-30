@@ -4,10 +4,12 @@
  */
 package com.g5.service.impl;
 
+import com.g5.domainmodel.HoaDonChiTiet;
 import com.g5.domainmodel.SanPham;
 import com.g5.repository.impl.BanHangRepository;
 import com.g5.service.IBanHangServie;
 import com.g5.util.DBConnection;
+import com.g5.viewModel.GioHangViewModel;
 import com.g5.viewModel.HoaDonViewModel;
 import com.g5.viewModel.SanPhamViewModel;
 import java.sql.ResultSet;
@@ -54,6 +56,21 @@ public class BanHangService implements IBanHangServie{
     @Override
     public String findByIdNV(String idNV) {
         return this.banHangRepository.findByIdNV(idNV);
+    }
+
+    @Override
+    public String addHDCT(HoaDonChiTiet hdct) {
+        return this.banHangRepository.addHDCT(hdct);
+    }
+
+    @Override
+    public List<GioHangViewModel> getGioHang(String id) {
+        return this.banHangRepository.getGioHang(id);
+    }
+
+    @Override
+    public List<SanPhamViewModel> getSanPhamBH(String id) {
+        return this.banHangRepository.getSanPhamBH(id);
     }
      
 }
