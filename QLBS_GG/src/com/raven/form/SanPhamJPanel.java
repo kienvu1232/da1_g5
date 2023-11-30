@@ -273,8 +273,6 @@ public class SanPhamJPanel extends javax.swing.JPanel {
 
         jLabel13.setText("NSX");
 
-        cbxNSX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-
         jLabel14.setText("Thể loại");
 
         jLabel15.setText("Số lượng");
@@ -713,6 +711,13 @@ public class SanPhamJPanel extends javax.swing.JPanel {
 
     private void tableSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableSPMouseClicked
         // TODO add your handling code here:
+        int i = tableSP.getSelectedRow();
+        String id = (String) tableSP.getValueAt(i, 0);
+        String ten = (String) tableSP.getValueAt(i, 1);
+        String tg = tableSP.getValueAt(i, 2).toString();
+        lblIDSP.setText(id);
+        txtTenSP.setText(ten);
+        cbxTG.setSelectedItem(tg);
         
     }//GEN-LAST:event_tableSPMouseClicked
 

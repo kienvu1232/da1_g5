@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class BanHangJPanel extends javax.swing.JPanel {
-
+    
     BanHangRepository banHangRepository = new BanHangRepository();
     BanHangService banHangService = new BanHangService();
     DecimalFormat fomat = new DecimalFormat("###,###,###");
@@ -23,14 +23,14 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private List<SanPhamViewModel> listSP = new ArrayList<>();
     private List<HoaDonViewModel> listHD = new ArrayList<>();
     private List<GioHangViewModel> listGH = new ArrayList<>();
-
+    
     public BanHangJPanel() {
         initComponents();
         loadSP();
         loadHD();
-
+        
     }
-
+    
     public void loadSP() {
         List<SanPhamViewModel> listspvm = banHangRepository.getAllSP();
         model = (DefaultTableModel) tableSPBH.getModel();
@@ -40,9 +40,9 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 s.getId(), s.getTenSP(), s.getIdNSX(), s.getIdTG(), s.getIdTheLoai(), s.getSoLuong(), s.getGiaBan()
             });
         }
-
+        
     }
-
+    
     public void loadHD() {
         List<HoaDonViewModel> listspvm = banHangRepository.findHD();
         model = (DefaultTableModel) tableHD.getModel();
@@ -52,20 +52,20 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 s.getId(), s.getMaHD(), s.getNgayTao(), s.getIdNV(), s.getIdKH(), s.getTrangThai()
             });
         }
-
+        
     }
-
+    
     public void loadGH2() {
         model = (DefaultTableModel) tableHDCT.getModel();
         model.setRowCount(0);
         for (GioHangViewModel x : listGH) {
             model.addRow(new Object[]{
-                x.getId(), x.getTenSP(), x.getSoLuong(), x.getDonGia()
+                x.getId(), x.getTenSP(), x.getSoLuong(), x.getDonGia() * x.getSoLuong()
             });
-
+            
         }
     }
-
+    
     public void loadGH(List<GioHangViewModel> listGioHang) {
         model = (DefaultTableModel) tableHDCT.getModel();
         model.setRowCount(0);
@@ -73,7 +73,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
             model.addRow(new Object[]{x.getId(), x.getTenSP(), x.getSoLuong(), x.getGiaBan()});
         }
     }
-
+    
     public void insertHD() {
         Random r = new Random();
         int x = r.nextInt(10);
@@ -81,10 +81,11 @@ public class BanHangJPanel extends javax.swing.JPanel {
         i++;
         String maHD = "HDD" + x + i;
         HoaDonViewModel hd = new HoaDonViewModel();
-
+        
         hd.setIdNV("F074E744-384E-49A2-8806-790C61B72479");
 //        hd.setIdKH(banHangRepository.findByIdKH(maHD));
-        hd.setIdKH("7F711971-B8F6-41AD-B876-D42AEC2EC75F");
+
+        hd.setIdKH("F3499789-8243-4778-A2F2-57DB7A484B84");
         hd.setMaHD(maHD);
         hd.setTrangThai(1);
         banHangService.insertHD(hd);
@@ -105,7 +106,8 @@ public class BanHangJPanel extends javax.swing.JPanel {
 //        loadGH(listGH);
 //        fillDataHD(index);
     }
-    private void fillInsertSPGH(){
+
+    private void fillInsertSPGH() {
         List<SanPhamViewModel> listsp = banHangRepository.getAllSP();
         
         GioHangViewModel gh = new GioHangViewModel();
@@ -116,33 +118,33 @@ public class BanHangJPanel extends javax.swing.JPanel {
         int soLuongSP = Integer.parseInt(tableSPBH.getValueAt(row, 5).toString());
 //        banHangRepository.
 //        SanPhamViewModel sp = (SanPhamViewModel) banHangRepository.getSanPhamBH(idSPDB);
-            if(rowHD <0){
-                JOptionPane.showMessageDialog(this, "Vui long chon hoa don");
-            }else{
-               String soLuong = JOptionPane.showInputDialog("Moi ban nhap so luong");
-            if(soLuong != null){
-                if(!soLuong.matches("[0-9]+")){
+        if (rowHD < 0) {
+            JOptionPane.showMessageDialog(this, "Vui long chon hoa don");
+        } else {
+            String soLuong = JOptionPane.showInputDialog("Moi ban nhap so luong");
+            if (soLuong != null) {
+                if (!soLuong.matches("[0-9]+")) {
                     JOptionPane.showMessageDialog(this, "Nhap dung dinh dang");
-                } else if(Integer.parseInt(soLuong) > soLuongSP){
+                } else if (Integer.parseInt(soLuong) > soLuongSP) {
                     JOptionPane.showMessageDialog(this, "So luong vuot qua");
                 } else {
 //                    HoaDonViewModel hd = listHD.get(rowHD);
                     String tensp = tableSPBH.getValueAt(row, 1).toString();
 //                    String tensp = tableSPBH.getValueAt(row, 1).toString();
                     Double donGia = Double.parseDouble(tableSPBH.getValueAt(row, 6).toString());
-
+                    
                     gh.setSoLuong(Integer.parseInt(soLuong));
                     gh.setIdSP(idSPDB);
                     gh.setTenSP(tensp);
                     gh.setDonGia(donGia);
                     boolean trung = false;
                     for (GioHangViewModel x : listGH) {
-                        if(x.getId().contains(idSPDB)){
+                        if (x.getId().contains(idSPDB)) {
                             trung = true;
                             System.out.println("thanh cong");
                         }
                     }
-                    if(trung){
+                    if (trung) {
                         JOptionPane.showMessageDialog(this, "San pham da co trong gio hang");
                     } else {
                         listGH.add(gh);
@@ -153,7 +155,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                         String idSP = idSPDB;
                         int SoLuong1 = Integer.parseInt(soLuong);
 //                        Double donGia = sp.getGiaBan();
-                        
+
                         // add gio hang vao HDCT
                         HoaDonChiTiet hdct = new HoaDonChiTiet(idSP, idHD, idSP, SoLuong1, 0);
                         JOptionPane.showMessageDialog(this, banHangService.addHDCT(hdct));
@@ -165,12 +167,11 @@ public class BanHangJPanel extends javax.swing.JPanel {
                         
                     }
                 }
-            } 
-            }
-            
+            }            
+        }
         
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -364,11 +365,11 @@ public class BanHangJPanel extends javax.swing.JPanel {
                                             .addComponent(cbxHTTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblTienThua)
                                             .addComponent(lblThanhToan)
-                                            .addComponent(lblTongTien)
                                             .addComponent(jLabel14)
                                             .addComponent(jLabel16)
                                             .addComponent(txtTienKhachDua, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                                            .addComponent(lblNgayTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(lblNgayTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(lblIdHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -543,6 +544,14 @@ public class BanHangJPanel extends javax.swing.JPanel {
         loadGH2();
         loadHD();
         loadSP();
+        double thanhTien = 0;
+        double thanhToan = 0;
+        double giamGia = 0;
+        for (GioHangViewModel gha : listGH) {
+            thanhTien += gha.getSoLuong() * gha.getDonGia();
+        }
+        lblTongTien.setText(String.valueOf(fomat.format(thanhTien)));
+        lblThanhToan.setText(String.valueOf(fomat.format(thanhToan = thanhTien)));
     }//GEN-LAST:event_btnCapNhapActionPerformed
 
 

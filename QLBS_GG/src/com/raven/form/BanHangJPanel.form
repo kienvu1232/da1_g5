@@ -307,11 +307,11 @@
                                               <Component id="cbxHTTT" min="-2" max="-2" attributes="0"/>
                                               <Component id="lblTienThua" min="-2" max="-2" attributes="0"/>
                                               <Component id="lblThanhToan" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblTongTien" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                               <Component id="txtTienKhachDua" alignment="0" pref="146" max="32767" attributes="0"/>
                                               <Component id="lblNgayTao" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="lblTongTien" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
