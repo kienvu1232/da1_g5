@@ -36,7 +36,7 @@ public class SanPhamJPanel extends javax.swing.JPanel {
     List<NSX> listNSX;
     List<TheLoai> listTL;
     List<TacGia> listTacGia;
-    DefaultTableModel model;
+    DefaultTableModel model = new DefaultTableModel();
     private DefaultComboBoxModel cbxmodel;
     
     public SanPhamJPanel() {
@@ -714,10 +714,12 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         int i = tableSP.getSelectedRow();
         String id = (String) tableSP.getValueAt(i, 0);
         String ten = (String) tableSP.getValueAt(i, 1);
-        String tg = tableSP.getValueAt(i, 2).toString();
+        model = (DefaultTableModel) tableSP.getModel();
+        String tenTG = tableSP.getValueAt(i, 2).toString();
+        String tenNSX = tableSP.getValueAt(i, 3).toString();
         lblIDSP.setText(id);
         txtTenSP.setText(ten);
-        cbxTG.setSelectedItem(tg);
+        cbxTG.setSelectedItem(tenTG);
         
     }//GEN-LAST:event_tableSPMouseClicked
 

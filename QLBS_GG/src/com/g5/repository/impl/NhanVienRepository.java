@@ -47,8 +47,9 @@ public class NhanVienRepository implements INhanVienRepository {
     }
 
     @Override
-    public void delete(String tenNV) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void delete(String id) {
+        String sql ="delete NhanVien where id = ?";
+        DBConnection.ExcuteDungna(sql,id);
     }
 
     @Override

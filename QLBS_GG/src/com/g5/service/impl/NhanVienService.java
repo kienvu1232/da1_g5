@@ -25,8 +25,8 @@ public class NhanVienService implements INhanVienService{
     }
 
     @Override
-    public void delete(String tenNV) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void delete(String id) {
+        this.nhanVienRepository.delete(id);
     }
 
     @Override

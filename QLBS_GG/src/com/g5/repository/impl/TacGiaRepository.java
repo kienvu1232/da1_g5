@@ -56,5 +56,9 @@ public class TacGiaRepository implements ITacGiaRepository{
         return dsTacGia; 
     }
 
-    
+    @Override
+    public TacGia findOneByName(String name){
+        return null;
+        
+    }
 }

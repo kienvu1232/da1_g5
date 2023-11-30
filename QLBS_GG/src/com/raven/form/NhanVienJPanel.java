@@ -10,13 +10,17 @@ import com.g5.domainmodel.NSX;
 import com.g5.domainmodel.NhanVien;
 import com.g5.service.impl.CuaHangService;
 import com.g5.service.impl.NhanVienService;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import jdk.jpackage.internal.PackagerException;
 
 /**
  *
@@ -45,7 +49,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         model = (DefaultTableModel) tableNV.getModel();
         model.setRowCount(0);
         for (NhanVien x : listNV) {
-            model.addRow(new Object[]{x.getTenNV(),x.getIdCH(), x.getGioiTinh(), x.getNgaySinh(),x.getSdt(),x.getDiaChi(),x.getEmail(),x.getNgayTao(),x.getMatKhau()});
+            model.addRow(new Object[]{x.getId(),x.getTenNV(),x.getIdCH(), x.getGioiTinh(), x.getNgaySinh(),x.getSdt(),x.getDiaChi(),x.getEmail(),x.getNgayTao(),x.getMatKhau()});
         }
     }
     public void loadTableCH(){
@@ -77,8 +81,15 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             nv.setGioiTinh(0);
         }
 //        Date date = new Date();
-//        SimpleDateFormat formatter = new SimpleDateFormat("yyy/MM/dd");
-//        String strDate = formatter.format(date);
+        String date = createdDate.getText();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        Date strDate = new Date();
+        try {
+            strDate = formatter.parse(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(NhanVienJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        nv.setNgayTao(strDate);
         nv.setSdt(txtSDT.getText());
         nv.setDiaChi(txtDiaChi.getText());
         nv.setEmail(txtEmail.getText());
@@ -87,6 +98,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     }
     void saveNV(){
         NhanVien nv = inputNhanVien();
+        System.out.println(nv.getNgayTao());
         nhanVienService.insert(nv);
         JOptionPane.showMessageDialog(this, "Thanh Cong");
         loadTableNhanVien();
@@ -133,21 +145,27 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         txtTimKiem = new javax.swing.JTextField();
         txtNgaySinh = new javax.swing.JTextField();
+        createdDate = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableCuaHang = new javax.swing.JTable();
 
         tableNV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tên NV", "Cửa hàng", "Giới tính", "Ngày sinh", "SĐT", "Địa chỉ", "Email", "Ngày tạo", "Mật khẩu", "Vai trò"
+                "ID", "Tên NV", "Cửa hàng", "Giới tính", "Ngày sinh", "SĐT", "Địa chỉ", "Email", "Ngày tạo", "Mật khẩu", "Vai trò"
             }
         ));
+        tableNV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableNVMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableNV);
 
         jLabel1.setText("ID");
@@ -188,6 +206,11 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         });
 
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
@@ -232,12 +255,6 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                         .addGap(103, 103, 103)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel13))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel9))
@@ -248,8 +265,17 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(cbxCuaHang, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel12))
+                            .addComponent(jLabel12)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel10))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                                    .addComponent(createdDate))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel13)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -281,13 +307,18 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSua))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(rdNam)
-                    .addComponent(rdNu)
-                    .addComponent(jLabel10)
-                    .addComponent(btnXoa))
-                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(rdNam)
+                            .addComponent(rdNu)
+                            .addComponent(jLabel10)
+                            .addComponent(btnXoa))
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(createdDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel11)
@@ -305,7 +336,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -370,6 +401,27 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         saveNV();
     }//GEN-LAST:event_btnThemActionPerformed
 
+    private void tableNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableNVMouseClicked
+        // TODO add your handling code here:
+        int i = tableNV.getSelectedRow();
+        String ma = (String) tableNV.getValueAt(i, 0);
+        lblIDNV.setText(ma);
+        
+    }//GEN-LAST:event_tableNVMouseClicked
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        int i = tableNV.getSelectedRow();
+        if (i != -1) {
+            String id = (String) tableNV.getValueAt(i, 0);
+            int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon xoa khong?");
+            if (confirm == JOptionPane.YES_OPTION) {
+                this.nhanVienService.delete(id);
+                loadTableNhanVien();
+            }
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSua;
@@ -377,6 +429,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnTim;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cbxCuaHang;
+    private javax.swing.JTextField createdDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

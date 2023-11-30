@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface INhanVienRepository {
     String insert (NhanVien nhanVien);
-    void delete (String tenNV);
+    void delete (String id);
     void update(NhanVien nhanVien);
     List<NhanVien>findAll();
 }
