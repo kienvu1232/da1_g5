@@ -1,5 +1,7 @@
 create database QLBS_GG
 go
+use QLBS_GG
+go
 create table TacGia(
 	Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
 	Ten NVARCHAR(50) DEFAULT NULL,
