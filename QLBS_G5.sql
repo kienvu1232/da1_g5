@@ -36,7 +36,8 @@ create table CuaHang(
 	ThanhPho NVARCHAR(50) DEFAULT NULL,
 	QuocGia NVARCHAR(50) DEFAULT NULL,
 )
-
+alter table NhanVien
+add FOREIGN KEY(IdCH) REFERENCES CuaHang(Id)
 create table NhanVien(
 	Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
 	IdCH UNIQUEIDENTIFIER,
@@ -50,6 +51,7 @@ create table NhanVien(
 	MatKhau NVARCHAR(50) DEFAULT NULL,
 	VaiTro BIT DEFAULT 1,
 	TrangThai INT DEFAULT 1,
+
 )
 create table KhachHang(
 	Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
