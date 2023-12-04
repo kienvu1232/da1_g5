@@ -297,6 +297,11 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         btnSuaSP.setText("Sửa");
 
         btnXoaSP.setText("Xóa");
+        btnXoaSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaSPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -804,6 +809,19 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         saveSP();
     }//GEN-LAST:event_btnThemSPActionPerformed
+
+    private void btnXoaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaSPActionPerformed
+        // TODO add your handling code here:
+         int i = tableSP.getSelectedRow();
+        if (i != -1) {
+            String id = (String) tableSP.getValueAt(i, 0);
+            int confirm = JOptionPane.showConfirmDialog(this, "Ban co muon xoa khong?");
+            if (confirm == JOptionPane.YES_OPTION) {
+                this.sanPhamService.delete(id);
+                loadTableSP();
+            }
+        }
+    }//GEN-LAST:event_btnXoaSPActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

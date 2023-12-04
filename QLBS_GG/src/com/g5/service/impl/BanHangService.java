@@ -72,5 +72,15 @@ public class BanHangService implements IBanHangServie{
     public List<SanPhamViewModel> getSanPhamBH(String id) {
         return this.banHangRepository.getSanPhamBH(id);
     }
+
+    @Override
+    public void deleteHD(String id) {
+        this.banHangRepository.deleteHD(id);
+    }
+
+    @Override
+    public void deleteHDCT(String id) {
+        this.banHangRepository.deleteHDCT(id);
+    }
      
 }

@@ -269,4 +269,16 @@ public class BanHangRepository implements IBanHangRepository {
 
     }
 
+    @Override
+    public void deleteHD(String id) {
+        String sql = "delete HoaDon where id =?";
+        DBConnection.ExcuteDungna(sql,id);
+    }
+
+    @Override
+    public void deleteHDCT(String id) {
+        String sql = "delete HoaDonChiTiet where idSP = ?";
+        DBConnection.ExcuteDungna(sql,id);        
+    }
+
 }

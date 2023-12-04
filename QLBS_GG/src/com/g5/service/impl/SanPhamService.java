@@ -43,5 +43,10 @@ public class SanPhamService implements ISanPhamService{
     public String findByIdTl(String idTL) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void delete(String id) {
+        this.sanPhamRepository.delete(id);
+    }
     
 }

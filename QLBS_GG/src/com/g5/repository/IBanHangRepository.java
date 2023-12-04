@@ -27,6 +27,7 @@ public interface IBanHangRepository {
 //    List<GioHangViewModel> get
     List<SanPhamViewModel>getSanPhamBH(String id);
     void updateSoLuong(String id, int soluong);
-    
+    void deleteHD (String id);
+    void deleteHDCT (String id);
     
 }

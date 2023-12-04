@@ -386,9 +386,9 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(29, 29, 29)
                 .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addGap(35, 35, 35))
         );
     }// </editor-fold>//GEN-END:initComponents
 

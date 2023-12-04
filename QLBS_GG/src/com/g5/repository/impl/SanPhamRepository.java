@@ -91,4 +91,10 @@ public class SanPhamRepository implements ISanPhamRepository {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public void delete(String id) {
+        String sql = "delete SanPham where id =?";
+        DBConnection.ExcuteDungna(sql,id);
+    }
+
 }

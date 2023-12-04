@@ -17,4 +17,5 @@ public interface ISanPhamService {
     String findByIdTG(String idTG);
     String findByIdNSX(String idNSX);
     String findByIdTl(String idTL);
+    void delete (String id);
 }

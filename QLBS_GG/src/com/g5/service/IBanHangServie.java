@@ -25,4 +25,6 @@ public interface IBanHangServie {
     List<GioHangViewModel> getGioHang(String id);
     
     List<SanPhamViewModel>getSanPhamBH(String id);
+    void deleteHD (String id);
+    void deleteHDCT (String id);
 }
